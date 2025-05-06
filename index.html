@@ -2,110 +2,75 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH Tube</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PH Tube</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    .active {
+      background-color: #FF1F3D;
+      color: #ffffff;
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <nav class="flex justify-between w-11/12 mx-auto py-5 items-center border-b-2 border-[#25252520]">
-            <div id="logo" class="logo">
-                <img class="w-[130px] cursor-pointer" src="./assets/images/Logo.png" alt="">
-            </div>
-            <div id="search" class="search">
-                <button class="bg-[#25252520] text-[#252525] px-5 py-2 rounded-lg cursor-pointer">Sort by view</button>
-            </div>
-            <div id="All" class="All">
-                <button class="bg-[#FF1F3D] text-[#ffffff] px-5 py-2 rounded-lg cursor-pointer">Blog</button>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <nav class="flex justify-between w-11/12 mx-auto py-5 items-center border-b-2 border-[#25252520]">
+      <div id="logo" class="logo">
+        <img class="w-[130px] cursor-pointer" src="./assets/images/Logo.png" alt="">
+      </div>
+      <div id="search" class="search focus:outline-none">
+        <label class="input focus:outline-none">
+          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input id="search-input" type="search" class="focus:outline-none" required placeholder="Search" />
+        </label>
+      </div>
+      <div id="All" class="All">
+        <button class="px-5 py-2 rounded-lg cursor-pointer bg-[#FF1F3D] text-[#ffffff]
+                ">Blog</button>
+      </div>
+    </nav>
+  </header>
+  <!-- Category Section -->
+  <section id="category-section" class="w-11/12 mx-auto py-5">
+    <nav id="category-container" class="flex justify-center gap-3 mx-auto  py-5 items-center">
+      <div>
+        <button id="btn-all" onclick="loadVideos()" class="btn btn-sm  px-5 py-2 rounded-lg cursor-pointer">All</button>
+      </div>
+    </nav>
+  </section>
+  <!-- Loader Animation -->
+  <section id="loader" class="text-center py-60 hidden">
+    <span class="loading loading-spinner loading-xl"></span>
+  </section>
+  <!-- Video Section -->
+  <section id="video-container" class="w-11/12 mx-auto grid grid-cols-4 gap-5">
 
-    <body>
-        <section id="category-section" class="w-11/12 mx-auto py-5">
-            <nav id="category-container" class="flex justify-center gap-3 mx-auto  py-5 items-center">
-                <button class="btn btn-sm bg-[#FF1F3D] text-[#ffffff] px-5 py-2 rounded-lg cursor-pointer">All</button>
-                    <button class="btn btn-sm bg-[#25252520] text-[#252525] px-5 py-2 rounded-lg cursor-pointer">All</button>
-                    <button class="btn btn-sm bg-[#25252520] text-[#252525] px-5 py-2 rounded-lg cursor-pointer">All</button>
-                    <button class="btn btn-sm bg-[#25252520] text-[#252525] px-5 py-2 rounded-lg cursor-pointer">All</button>
-            </nav>
-        </section>
-        <section class="card-container w-11/12 mx-auto grid grid-cols-4 gap-5">
-            <div class=" bg-base-100 w-full shadow-sm">
-                <figure>
-                    <img class="rounded w-full h-[230px] object-cover" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-                </figure>
-                <div class="py-5 flex gap-5">
-                    <div class="avatar w-8 h-8">
-                        <div class="ring-primary ring-offset-base-100 w-8 rounded-full ring-offset-2">
-                            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
-                        </div>
-                    </div>
-                    <div class="card-content space-y-2">
-                        <h2 class="text-base font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-                        <p class="text-[#5c5c5c] text-sm">Awlad Hossain</p>
-                        <p class="text-[#5c5c5c] text-sm">91K views</p>
-                    </div>
-                </div>
-            </div>
-            <div class=" bg-base-100 w-full shadow-sm">
-                <figure>
-                    <img class="rounded w-full h-[230px] object-cover" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-                </figure>
-                <div class="py-5 flex gap-5">
-                    <div class="avatar w-8 h-8">
-                        <div class="ring-primary ring-offset-base-100 w-8 rounded-full ring-offset-2">
-                            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
-                        </div>
-                    </div>
-                    <div class="card-content space-y-2">
-                        <h2 class="text-base font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-                        <p class="text-[#5c5c5c] text-sm">Awlad Hossain</p>
-                        <p class="text-[#5c5c5c] text-sm">91K views</p>
-                    </div>
-                </div>
-            </div>
-            <div class=" bg-base-100 w-full shadow-sm">
-                <figure>
-                    <img class="rounded w-full h-[230px] object-cover" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-                </figure>
-                <div class="py-5 flex gap-5">
-                    <div class="avatar w-8 h-8">
-                        <div class="ring-primary ring-offset-base-100 w-8 rounded-full ring-offset-2">
-                            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
-                        </div>
-                    </div>
-                    <div class="card-content space-y-2">
-                        <h2 class="text-base font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-                        <p class="text-[#5c5c5c] text-sm">Awlad Hossain</p>
-                        <p class="text-[#5c5c5c] text-sm">91K views</p>
-                    </div>
-                </div>
-            </div>
-            <div class=" bg-base-100 w-full shadow-sm">
-                <figure>
-                    <img class="rounded w-full h-[230px] object-cover" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-                </figure>
-                <div class="py-5 flex gap-5">
-                    <div class="avatar w-8 h-8">
-                        <div class="ring-primary ring-offset-base-100 w-8 rounded-full ring-offset-2">
-                            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
-                        </div>
-                    </div>
-                    <div class="card-content space-y-2">
-                        <h2 class="text-base font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-                        <p class="text-[#5c5c5c] text-sm">Awlad Hossain</p>
-                        <p class="text-[#5c5c5c] text-sm">91K views</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </body>
-    <footer></footer>
-    <script src="./assets/js/main.js"></script>
+  </section>
+  <!-- Open the modal using ID.showModal() method -->
+  <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+  <dialog id="video_details" class="modal">
+    <div class="modal-box">
+      <div id="details-container">
+
+      </div>
+      <div class="modal-action">
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+  <footer></footer>
+  <script src="./assets/js/main.js"></script>
 </body>
 
 </html>
