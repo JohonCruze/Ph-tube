@@ -1,10 +1,10 @@
 // Loader Animation
 
-const showLoader = () =>{
+const showLoader = () => {
     document.getElementById('loader').classList.remove('hidden')
     document.getElementById('video-container').classList.add('hidden')
 }
-const hideLoader = () =>{
+const hideLoader = () => {
     document.getElementById('loader').classList.add('hidden')
     document.getElementById('video-container').classList.remove('hidden')
 }
@@ -65,21 +65,18 @@ const loadCategoryVideos = (id) => {
         .then(res => res.json())
         .then(data => {
             removeActiveClass();
-            
             // Handle both cases:
             // 1. For "All" button (id might be undefined or 'all')
             // 2. For category buttons (numeric ids)
             const buttonId = id ? `btn-${id}` : 'btn-all';
             const clickedBtn = document.getElementById(buttonId);
-            
             if (!clickedBtn) {
                 return;
             }
-            
             clickedBtn.classList.add('active');
             displayVideos(data.category || data.videos); // Handle both cases
         })
-        
+
 }
 
 function displayCategories(categories) {
@@ -88,7 +85,6 @@ function displayCategories(categories) {
 
     // Loop Operation of array object
     for (let cat of categories) {
-
         // Create Element
         const categoryDiv = document.createElement('div')
         categoryDiv.innerHTML = `
@@ -96,10 +92,7 @@ function displayCategories(categories) {
         `
         // Append Element
         categoryContainer.append(categoryDiv)
-        
     }
-
-    // console.log(categories);
 }
 
 const loadVideoDetails = (videoId) => {
@@ -109,7 +102,6 @@ const loadVideoDetails = (videoId) => {
         .then((res) => res.json())
         .then((data) => displayVideoDetails(data.video))
 }
-
 const displayVideoDetails = (video) => {
     console.log(video);
     document.getElementById('video_details').showModal()
@@ -129,21 +121,19 @@ const displayVideoDetails = (video) => {
     `
 
 }
-
 const displayVideos = (videos) => {
     // Get The Container
     const videoContainer = document.getElementById('video-container')
     videoContainer.innerHTML = ''
     if (videos.length == 0) {
         videoContainer.innerHTML = `
-            <div class="flex flex-col col-span-full justify-center items-center mx-auto space-y-5 py-20">
+            <div class="flex flex-col col-span-full justify-center items-center mx-auto space-y-5 py-30">
                 <img src="./assets/images/Icon.png" alt="">
                 <h2 class="text-4xl font-bold text-center">Oops!! Sorry, There is no <br> content here</h2>
             </div>
         `
         hideLoader()
         return;
-
     }
     // Loop Operation of array object
     videos.forEach((video) => {
@@ -177,10 +167,8 @@ const displayVideos = (videos) => {
     });
 
 }
-
-
-document.getElementById('search-input').addEventListener('keyup',(e) => {
-    const input =e.target.value;
+document.getElementById('search-input').addEventListener('keyup', (e) => {
+    const input = e.target.value;
     loadVideos(input)
 })
 
